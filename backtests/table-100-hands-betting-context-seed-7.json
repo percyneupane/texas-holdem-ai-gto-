@@ -1,0 +1,741 @@
+{
+  "completed_hands": 100,
+  "complete": true,
+  "players": 6,
+  "seed": 7,
+  "policy": "contextual",
+  "equity_samples": 200,
+  "opponents": "local TableGame balanced rule-based bots",
+  "api_calls": 0,
+  "observation": "Structured public state and hero cards; not a screenshot-recognition test.",
+  "stack_mode": "100bb initial stacks, carried between hands, busted players rebought to 100bb",
+  "hero_rebuys": 0,
+  "gross_profit_bb": -25.200000000000003,
+  "rake_adjusted_profit_bb": -27.235,
+  "gross_profit_at_0_10_bb": -2.52,
+  "rake_adjusted_profit_at_0_10_bb": -2.72,
+  "illustrative_rake": {
+    "rate": 0.05,
+    "cap_bb": 3,
+    "no_flop_no_drop": true,
+    "applied_to_table": false
+  },
+  "profitable_hands": 21,
+  "losing_hands": 28,
+  "break_even_hands": 51,
+  "hands_receiving_award": 21,
+  "hero_decisions": 160,
+  "actions": {
+    "fold": 71,
+    "raise": 21,
+    "check": 49,
+    "bet": 13,
+    "call": 6
+  },
+  "invalid_actions": 0,
+  "median_decision_ms": 29.87,
+  "runtime_seconds": 4.82,
+  "limitations": "One small seeded synthetic session, not evidence of real-game profitability or a comparison against the old policy.",
+  "hand_results": [
+    {
+      "hand": 1,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 2,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 3,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 4,
+      "gross_bb": 1.5,
+      "rake_adjusted_bb": 1.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 5,
+      "gross_bb": 0.5,
+      "rake_adjusted_bb": 0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 6,
+      "gross_bb": -0.5,
+      "rake_adjusted_bb": -0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 7,
+      "gross_bb": -3.5,
+      "rake_adjusted_bb": -3.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 8,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 9,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 10,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 11,
+      "gross_bb": 8.1,
+      "rake_adjusted_bb": 7.315,
+      "hypothetical_rake_bb": 0.785,
+      "hero_received_award": true
+    },
+    {
+      "hand": 12,
+      "gross_bb": 1,
+      "rake_adjusted_bb": 1,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 13,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 14,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 15,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 16,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 17,
+      "gross_bb": -1,
+      "rake_adjusted_bb": -1,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 18,
+      "gross_bb": 3,
+      "rake_adjusted_bb": 3,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 19,
+      "gross_bb": 2.5,
+      "rake_adjusted_bb": 2.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 20,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 21,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 22,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 23,
+      "gross_bb": 0.5,
+      "rake_adjusted_bb": 0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 24,
+      "gross_bb": -0.5,
+      "rake_adjusted_bb": -0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 25,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 26,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 27,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 28,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 29,
+      "gross_bb": 0.5,
+      "rake_adjusted_bb": 0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 30,
+      "gross_bb": -4,
+      "rake_adjusted_bb": -4,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 31,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 32,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 33,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 34,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 35,
+      "gross_bb": -1,
+      "rake_adjusted_bb": -1,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 36,
+      "gross_bb": -0.5,
+      "rake_adjusted_bb": -0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 37,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 38,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 39,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 40,
+      "gross_bb": 1.5,
+      "rake_adjusted_bb": 1.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 41,
+      "gross_bb": -3.6,
+      "rake_adjusted_bb": -3.6,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 42,
+      "gross_bb": -0.5,
+      "rake_adjusted_bb": -0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 43,
+      "gross_bb": -4.5,
+      "rake_adjusted_bb": -4.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 44,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 45,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 46,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 47,
+      "gross_bb": 1.5,
+      "rake_adjusted_bb": 1.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 48,
+      "gross_bb": -0.5,
+      "rake_adjusted_bb": -0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 49,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 50,
+      "gross_bb": 2.5,
+      "rake_adjusted_bb": 2.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 51,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 52,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 53,
+      "gross_bb": -3,
+      "rake_adjusted_bb": -3,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 54,
+      "gross_bb": 1,
+      "rake_adjusted_bb": 0.9,
+      "hypothetical_rake_bb": 0.1,
+      "hero_received_award": true
+    },
+    {
+      "hand": 55,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 56,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 57,
+      "gross_bb": -3.5,
+      "rake_adjusted_bb": -3.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 58,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 59,
+      "gross_bb": 1.5,
+      "rake_adjusted_bb": 1.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 60,
+      "gross_bb": -6.3,
+      "rake_adjusted_bb": -6.3,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 61,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 62,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 63,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 64,
+      "gross_bb": 5.5,
+      "rake_adjusted_bb": 5.1,
+      "hypothetical_rake_bb": 0.4,
+      "hero_received_award": true
+    },
+    {
+      "hand": 65,
+      "gross_bb": 1,
+      "rake_adjusted_bb": 1,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 66,
+      "gross_bb": 2,
+      "rake_adjusted_bb": 2,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 67,
+      "gross_bb": 2.5,
+      "rake_adjusted_bb": 2.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 68,
+      "gross_bb": -2.5,
+      "rake_adjusted_bb": -2.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 69,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 70,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 71,
+      "gross_bb": -1,
+      "rake_adjusted_bb": -1,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 72,
+      "gross_bb": 5.1,
+      "rake_adjusted_bb": 4.665,
+      "hypothetical_rake_bb": 0.43500000000000005,
+      "hero_received_award": true
+    },
+    {
+      "hand": 73,
+      "gross_bb": -2.5,
+      "rake_adjusted_bb": -2.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 74,
+      "gross_bb": -7.4,
+      "rake_adjusted_bb": -7.4,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 75,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 76,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 77,
+      "gross_bb": -1,
+      "rake_adjusted_bb": -1,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 78,
+      "gross_bb": -0.5,
+      "rake_adjusted_bb": -0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 79,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 80,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 81,
+      "gross_bb": 1.5,
+      "rake_adjusted_bb": 1.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 82,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 83,
+      "gross_bb": -1,
+      "rake_adjusted_bb": -1,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 84,
+      "gross_bb": -0.5,
+      "rake_adjusted_bb": -0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 85,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 86,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 87,
+      "gross_bb": -3.5,
+      "rake_adjusted_bb": -3.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 88,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 89,
+      "gross_bb": 3.4,
+      "rake_adjusted_bb": 3.085,
+      "hypothetical_rake_bb": 0.31500000000000006,
+      "hero_received_award": true
+    },
+    {
+      "hand": 90,
+      "gross_bb": -0.5,
+      "rake_adjusted_bb": -0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 91,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 92,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 93,
+      "gross_bb": -3.5,
+      "rake_adjusted_bb": -3.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 94,
+      "gross_bb": -2.5,
+      "rake_adjusted_bb": -2.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 95,
+      "gross_bb": 0.5,
+      "rake_adjusted_bb": 0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": true
+    },
+    {
+      "hand": 96,
+      "gross_bb": -0.5,
+      "rake_adjusted_bb": -0.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 97,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 98,
+      "gross_bb": -12.5,
+      "rake_adjusted_bb": -12.5,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 99,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    },
+    {
+      "hand": 100,
+      "gross_bb": 0,
+      "rake_adjusted_bb": 0,
+      "hypothetical_rake_bb": 0,
+      "hero_received_award": false
+    }
+  ]
+}

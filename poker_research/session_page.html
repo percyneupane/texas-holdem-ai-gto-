@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session</title>
+<style>
+html, body { margin: 0; background: #0b0f13; color: #e7ece8; }
+body { font: 15px/1.45 -apple-system, Helvetica, Arial, sans-serif; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 28px 20px 72px; }
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+h1 { margin: 0; font-size: 22px; font-weight: 650; letter-spacing: 0; }
+a { color: #c5d0c8; }
+a:hover { color: #fff; }
+a:focus-visible, summary:focus-visible { outline: 2px solid #d7e0ea; outline-offset: 3px; }
+.total { margin: 22px 0 6px; font: 44px/1 Menlo, ui-monospace, monospace; letter-spacing: -0.03em; }
+.up { color: #8fd0a8; }
+.down { color: #e08b84; }
+.flat { color: #e7ece8; }
+.meta, .note, .file, .empty { color: #9aa7b2; }
+.note { max-width: 62ch; margin: 8px 0 0; font-size: 14px; }
+.file { margin: 4px 0 0; font: 12px/1.4 Menlo, ui-monospace, monospace; }
+h2 { margin: 36px 0 0; font-size: 16px; font-weight: 650; }
+.hand { border-top: 1px solid #243028; padding: 14px 0 12px; }
+.hand header { display: grid; grid-template-columns: 4.2em minmax(0, 1fr) auto; gap: 12px 16px; align-items: center; }
+.num { color: #9aa7b2; font: 13px/1 Menlo, ui-monospace, monospace; }
+.spot { min-width: 0; }
+.hole, .board { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.board { margin-top: 6px; }
+.card { display: inline-block; min-width: 1.8em; padding: 3px 5px 2px; background: #f3efe4; color: #1c1915;
+  border-radius: 3px; font: 13px/1.15 Menlo, ui-monospace, monospace; text-align: center; }
+.card.red { color: #9c2f2f; }
+.ending { margin-top: 4px; color: #9aa7b2; font-size: 13px; }
+.result { font: 18px/1.1 Menlo, ui-monospace, monospace; text-align: right; white-space: nowrap; }
+.result small { display: block; margin-top: 4px; color: #9aa7b2; font-size: 12px; }
+details { margin-top: 8px; }
+summary { cursor: pointer; color: #c5d0c8; }
+.play, .log { margin: 10px 0 0; padding: 0; list-style: none; }
+.play li, .awards li { margin: 0 0 6px; }
+.reason { color: #c5d0c8; }
+.where { color: #9aa7b2; font: 12px/1.4 Menlo, ui-monospace, monospace; }
+.log { white-space: pre-wrap; color: #9aa7b2; font: 12px/1.45 Menlo, ui-monospace, monospace; }
+.live { margin-top: 22px; padding-top: 12px; border-top: 1px solid #243028; }
+@media (max-width: 640px) {
+  .total { font-size: 34px; }
+  .hand header { grid-template-columns: 3.2em minmax(0, 1fr); }
+  .result { grid-column: 2; text-align: left; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Session</h1>
+    <a href="/">Back to the table</a>
+  </div>
+  <p id="total" class="total flat">—</p>
+  <p id="meta" class="meta"></p>
+  <p id="note" class="note"></p>
+  <p id="file" class="file"></p>
+  <div id="live"></div>
+  <h2>Hands</h2>
+  <div id="hands"></div>
+  <div id="overlay"></div>
+</div>
+<script>
+const SUITS = {s: '♠', h: '♥', d: '♦', c: '♣'};
+const RED = {h: true, d: true};
+
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text != null) node.textContent = text;
+  return node;
+}
+
+function signed(value, digits) {
+  const number = Number(value) || 0;
+  const body = digits == null ? String(Math.round(number)) : number.toFixed(digits);
+  if (number > 0) return '+' + body;
+  return body;
+}
+
+function tone(value) {
+  const number = Number(value) || 0;
+  return number > 0 ? 'up' : number < 0 ? 'down' : 'flat';
+}
+
+function cardEl(code) {
+  const text = String(code || '');
+  const suit = text.slice(-1);
+  const rank = text.slice(0, -1).replace('T', '10');
+  const node = el('span', 'card' + (RED[suit] ? ' red' : ''), rank + (SUITS[suit] || suit));
+  return node;
+}
+
+function cardsInto(parent, codes) {
+  const list = codes || [];
+  if (!list.length) {
+    parent.append(el('span', 'empty', '—'));
+    return;
+  }
+  list.forEach(code => parent.append(cardEl(code)));
+}
+
+function ending(hand) {
+  if (hand.showdown) return 'Went to showdown';
+  if (hand.hero_folded) return 'Folded' + (hand.street ? ' on the ' + hand.street : '');
+  if (hand.street) return 'Ended on the ' + hand.street;
+  return 'Finished';
+}
+
+function actionText(action) {
+  const who = action.position ? action.position + ' ' : '';
+  let text = who + (action.action || '');
+  if (action.raise_to) text += ' to ' + action.raise_to;
+  else if (action.amount) text += ' ' + action.amount;
+  return (action.street ? action.street + '  ' : '') + text;
+}
+
+function spotText(spot) {
+  let text = (spot.street ? spot.street + '  ' : '') + (spot.action || '');
+  if (spot.chips_added) text += '  +' + spot.chips_added;
+  if (spot.equity != null) text += '   ' + Math.round(spot.equity * 100) + '% equity';
+  return text;
+}
+
+function addPlay(parent, hand) {
+  const hero = hand.hero_actions || [];
+  if (hero.length) {
+    const list = el('ul', 'play');
+    hero.forEach(spot => {
+      const item = el('li');
+      item.append(el('div', null, spotText(spot)));
+      if (spot.reason) item.append(el('div', 'reason', spot.reason));
+      list.append(item);
+    });
+    parent.append(list);
+  }
+  const actions = hand.actions || [];
+  if (actions.length) {
+    const list = el('ol', 'play');
+    actions.forEach(action => list.append(el('li', 'where', actionText(action))));
+    parent.append(list);
+  }
+  const awards = hand.awards || [];
+  if (awards.length) {
+    const list = el('ul', 'play awards');
+    awards.forEach(award => {
+      let text = award.name + ' wins ' + award.amount;
+      if (award.hand) text += ' with ' + award.hand;
+      list.append(el('li', null, text));
+    });
+    parent.append(list);
+  }
+  if (hand.starting_stack != null && hand.ending_stack != null) {
+    parent.append(el('p', 'where', 'Stack ' + hand.starting_stack + ' → ' + hand.ending_stack));
+  }
+  if (hand.log && hand.log.length) parent.append(el('pre', 'log', hand.log.join('\n')));
+}
+
+function handArticle(hand, key) {
+  const article = el('article', 'hand');
+  const header = el('header');
+  const label = el('div');
+  label.append(el('div', 'num', '#' + hand.hand_number));
+  if (hand.position) label.append(el('div', 'where', hand.position));
+  const spot = el('div', 'spot');
+  const hole = el('div', 'hole');
+  cardsInto(hole, hand.hero);
+  spot.append(hole);
+  const board = el('div', 'board');
+  cardsInto(board, hand.board);
+  spot.append(board);
+  spot.append(el('div', 'ending', ending(hand)));
+  const result = el('div', 'result ' + tone(hand.profit_bb));
+  result.append(document.createTextNode(signed(hand.profit_bb, 1) + ' bb'));
+  result.append(el('small', null, signed(hand.profit_chips) + ' chips'));
+  header.append(label, spot, result);
+  article.append(header);
+  const details = el('details');
+  details.dataset.key = key;
+  details.append(el('summary', null, 'How this hand was played'));
+  addPlay(details, hand);
+  article.append(details);
+  return article;
+}
+
+function renderLive(data) {
+  const live = document.getElementById('live');
+  live.replaceChildren();
+  const hand = data.current_hand;
+  if (!hand) return;
+  const box = el('div', 'live');
+  box.append(el('h2', null, 'Hand ' + hand.hand_number + ' is still going'));
+  const hole = el('div', 'hole');
+  cardsInto(hole, hand.hero);
+  box.append(hole);
+  if (hand.board && hand.board.length) {
+    const board = el('div', 'board');
+    cardsInto(board, hand.board);
+    box.append(board);
+  }
+  addPlay(box, hand);
+  live.append(box);
+}
+
+function renderOverlay(data) {
+  const root = document.getElementById('overlay');
+  root.replaceChildren();
+  const hands = data.observed_hands || [];
+  if (!hands.length) return;
+  root.append(el('h2', null, 'Overlay reads'));
+  root.append(el('p', 'note', 'Decisions read from the capture box. They stay out of the chip total above.'));
+  hands.slice().reverse().forEach(hand => {
+    const article = el('article', 'hand');
+    const header = el('header');
+    const label = el('div');
+    label.append(el('div', 'num', '#' + hand.hand_number));
+    if (hand.position) label.append(el('div', 'where', hand.position));
+    const spot = el('div', 'spot');
+    const hole = el('div', 'hole');
+    cardsInto(hole, hand.hero);
+    spot.append(hole);
+    const board = el('div', 'board');
+    cardsInto(board, hand.board);
+    spot.append(board);
+    const decisions = hand.decisions || [];
+    spot.append(el('div', 'ending', decisions.length + (decisions.length === 1 ? ' decision' : ' decisions')
+      + (hand.in_progress ? ', still open' : '')));
+    const result = el('div', 'result flat');
+    if (hand.stack_first != null && hand.stack_last != null) {
+      result.append(document.createTextNode(hand.stack_first + ' → ' + hand.stack_last));
+      result.append(el('small', null, 'stack seen'));
+    }
+    header.append(label, spot, result);
+    article.append(header);
+    const details = el('details');
+    details.dataset.key = 'read-' + hand.hand_number;
+    details.append(el('summary', null, 'Decisions in this read'));
+    const list = el('ul', 'play');
+    decisions.forEach(spot => {
+      const item = el('li');
+      let text = spotText(spot);
+      if (spot.pot != null) text += '   pot ' + spot.pot;
+      if (spot.to_call) text += '   to call ' + spot.to_call;
+      item.append(el('div', null, text));
+      if (spot.reason) item.append(el('div', 'reason', spot.reason));
+      list.append(item);
+    });
+    details.append(list);
+    article.append(details);
+    root.append(article);
+  });
+}
+
+function render(data) {
+  const open = new Set([...document.querySelectorAll('details[open]')].map(node => node.dataset.key));
+  const table = data.table || {};
+  const total = document.getElementById('total');
+  const hands = table.hands || 0;
+  total.className = 'total ' + (hands ? tone(table.profit_bb) : 'flat');
+  total.textContent = hands ? signed(table.profit_bb, 1) + ' bb' : '0 bb';
+  const rate = table.bb_per_100 == null ? '—' : signed(table.bb_per_100, 1);
+  document.getElementById('meta').textContent = hands
+    ? hands + (hands === 1 ? ' hand' : ' hands')
+      + ' · won ' + (table.won_hands || 0)
+      + ' · lost ' + (table.lost_hands || 0)
+      + ' · ' + (table.showdowns || 0) + ' showdowns'
+      + ' · ' + signed(table.profit_chips) + ' chips'
+      + ' · ' + rate + ' bb/100'
+    : 'No finished hands yet.';
+  document.getElementById('note').textContent = data.note || '';
+  const file = document.getElementById('file');
+  file.textContent = data.saved_to ? 'Saved to ' + data.saved_to : '';
+  if (data.write_error) file.textContent += (file.textContent ? ' · ' : '') + 'The history file could not be updated.';
+  renderLive(data);
+  const list = document.getElementById('hands');
+  const finished = (data.table_hands || []).slice().reverse();
+  list.replaceChildren();
+  if (!finished.length) {
+    list.append(el('p', 'empty', 'Play a hand on the table. It shows up here when it finishes.'));
+  }
+  finished.forEach(hand => list.append(handArticle(hand, 'hand-' + hand.hand_number)));
+  renderOverlay(data);
+  document.querySelectorAll('details').forEach(node => {
+    if (open.has(node.dataset.key)) node.open = true;
+  });
+}
+
+let last = '';
+async function poll() {
+  try {
+    const response = await fetch('/session.json', {cache: 'no-store'});
+    const text = await response.text();
+    if (text !== last) {
+      last = text;
+      render(JSON.parse(text));
+    }
+  } catch (error) { /* server restarting; keep the last render */ }
+  setTimeout(poll, 1000);
+}
+poll();
+</script>
+</body>
+</html>

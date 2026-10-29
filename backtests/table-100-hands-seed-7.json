@@ -1,0 +1,100 @@
+{
+  "run": "Isolated accelerated TableGame autoplay; same engine and default opponents as local Research Table",
+  "hands": 100,
+  "players": 6,
+  "policy": "contextual",
+  "seed": 7,
+  "equity_samples": 200,
+  "observation": "structured simulator state; no screenshots or Gemini requests",
+  "stacks": "Carry over between hands; busted seats rebuy per TableGame rules",
+  "hero_rebuys": 0,
+  "gross_profit_bb": -60.199999999999996,
+  "gross_profit_at_0_10_bb": -6.02,
+  "gross_bb_per_100": {
+    "hands": 100,
+    "bb_per_100": -60.199999999999996,
+    "approx_95_ci": [
+      -278.61489156172297,
+      158.21489156172296
+    ]
+  },
+  "illustrative_rake": {
+    "rate": 0.05,
+    "cap_bb": 3,
+    "no_flop_no_drop": true,
+    "applied_to_table": false
+  },
+  "hypothetical_rake_bb": 5.32,
+  "rake_adjusted_profit_bb": -65.52,
+  "rake_adjusted_profit_at_0_10_bb": -6.55,
+  "rake_adjusted_bb_per_100": {
+    "hands": 100,
+    "bb_per_100": -65.52,
+    "approx_95_ci": [
+      -280.01146218753576,
+      148.97146218753574
+    ]
+  },
+  "profitable_hands": 27,
+  "losing_hands": 22,
+  "break_even_hands": 51,
+  "decisions": 149,
+  "actions": {
+    "fold": 67,
+    "raise": 29,
+    "bet": 11,
+    "check": 34,
+    "call": 8
+  },
+  "invalid_actions": 0,
+  "median_decision_ms": 29.14,
+  "max_decision_ms": 277.57,
+  "runtime_seconds": 5.28,
+  "largest_losses": [
+    {
+      "hand": 63,
+      "gross_bb": -65.5,
+      "rake_adjusted_bb": -65.5,
+      "hypothetical_rake_bb": 0
+    },
+    {
+      "hand": 86,
+      "gross_bb": -47.3,
+      "rake_adjusted_bb": -47.3,
+      "hypothetical_rake_bb": 0
+    },
+    {
+      "hand": 7,
+      "gross_bb": -25.9,
+      "rake_adjusted_bb": -25.9,
+      "hypothetical_rake_bb": 0
+    }
+  ],
+  "largest_wins": [
+    {
+      "hand": 62,
+      "gross_bb": 69,
+      "rake_adjusted_bb": 66,
+      "hypothetical_rake_bb": 3
+    },
+    {
+      "hand": 11,
+      "gross_bb": 8.1,
+      "rake_adjusted_bb": 7.315,
+      "hypothetical_rake_bb": 0.785
+    },
+    {
+      "hand": 59,
+      "gross_bb": 5.5,
+      "rake_adjusted_bb": 5,
+      "hypothetical_rake_bb": 0.5
+    }
+  ],
+  "uncertainty": "Single short session with carrying stacks: normal CI is descriptive, not evidence of a population win rate.",
+  "equivalent_stakes": {
+    "small_blind": 0.05,
+    "big_blind": 0.1,
+    "starting_bankroll": 10,
+    "note": "Simulator uses 5/10 chip units; money figures are an equivalent-scale conversion."
+  }
+}

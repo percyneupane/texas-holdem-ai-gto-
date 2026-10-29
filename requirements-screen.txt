@@ -1,0 +1,2 @@
+# Optional mouse/keyboard driver for python -m poker_research.screen_play
+PyAutoGUI==0.9.54
